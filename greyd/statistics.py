@@ -4,17 +4,17 @@
     File name: statistics.py
     Author: Canberk Özdemir
     Date created: 5/23/2018
-    Date last modified: 1/21/2019
-    Python version: 3.5.2
+    Date last modified: 1/22/2019
+    Python version: 3.7.2
 
     User statistics module.
     Greyd Rule: 3xx
 """
 import logging
-from database_connection import DatabeseGreyd
+from database import DatabaseGreyd
 
 
-class UserStatistics(DatabeseGreyd):
+class UserStatistics(DatabaseGreyd):
     """User statistics information."""
 
     def __init__(self):

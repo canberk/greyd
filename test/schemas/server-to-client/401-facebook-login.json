@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Facebook user login schema",
+  "properties": {
+   "success": {
+     "type": "boolean"
+   },
+    "greydRule": {
+      "type": "number"
+    },
+    "greydId": {
+      "type": "number"
+    },
+    "userStatus": {
+      "type": "number"
+    }
+  },
+  "required": ["success", "greydRule", "greydId", "userStatus"]
+}

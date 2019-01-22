@@ -4,10 +4,8 @@
     File name: aes_crypt.py
     Author: Canberk Özdemir
     Date created: 2/5/2018
-    Date last modified: 1/21/2019
-    Python version: 3.5.2
-
-    Aes encrypt and decrypt library for Greyd
+    Date last modified: 1/22/2019
+    Python version: 3.7.2
 """
 import hashlib
 from Crypto import Random

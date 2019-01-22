@@ -4,8 +4,8 @@
     File name: user_login.py
     Author: Canberk Özdemir
     Date created: 2/5/2018
-    Date last modified: 1/21/2019
-    Python version: 3.5.2
+    Date last modified: 1/22/2019
+    Python version: 3.7.2
 
     User login service module.
     Greyd Rule: 4xx
@@ -15,10 +15,10 @@ import sqlite3 as sql
 import json
 import logging
 import requests
-from database_connection import DatabeseGreyd
+from database import DatabaseGreyd
 
 
-class UserLogin(DatabeseGreyd):
+class UserLogin(DatabaseGreyd):
     """User create or login every android splash time."""
 
     def __init__(self):
@@ -28,7 +28,7 @@ class UserLogin(DatabeseGreyd):
     def entry(self, greyd_rule, json_request):
         """Desicion is facebook login/create or guest create."""
         if greyd_rule == 401:
-           response = self.__facebook_login__(json_request)
+            response = self.__facebook_login__(json_request)
         elif greyd_rule == 402:
             response = self.__guest_login__(json_request)
         return response

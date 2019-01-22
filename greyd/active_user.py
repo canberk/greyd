@@ -4,7 +4,7 @@
     File name: active_user.py
     Author: Canberk Özdemir
     Date created: 5/23/2018
-    Date last modified: 1/21/2019
+    Date last modified: 1/22/2019
     Python version: 3.5.2
 
     Active user in game
@@ -13,10 +13,10 @@
 
 import datetime
 import logging
-from database_connection import DatabeseGreyd
+from database import DatabaseGreyd
 
 
-class ActiveUser(DatabeseGreyd):
+class ActiveUser(DatabaseGreyd):
     """Active game greyd rules handler"""
 
     def __init__(self):

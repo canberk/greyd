@@ -1,0 +1,32 @@
+version: '3.7'
+
+services:
+  app:
+    build: greyd
+    ports:
+      - "8001:8001"
+    env_file:
+      - .env
+    networks:
+      test_app_net:
+        ipv4_address: 10.20.30.10
+
+  test:
+    build: test
+    env_file:
+      - .env
+    links:
+      - app
+    volumes:
+      - ./greyd/greydcrypt:/usr/src/app/greydcrypt
+    networks:
+      test_app_net:
+        ipv4_address: 10.20.30.11
+
+networks:
+  test_app_net:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.20.30.0/24

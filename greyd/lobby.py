@@ -4,8 +4,8 @@
     File name: lobby.py
     Author: Canberk Özdemir
     Date created: 2/5/2018
-    Date last modified: 1/21/2019
-    Python version: 3.5.2
+    Date last modified: 1/22/2019
+    Python version: 3.7.2
 
     Lobby operations on database and create response.
     Greyd Rule: 2xx
@@ -16,10 +16,10 @@ import logging
 import datetime
 import random
 from geopy.distance import great_circle
-from database_connection import DatabeseGreyd
+from database import DatabaseGreyd
 
 
-class LobbyTransaction(DatabeseGreyd):
+class LobbyTransaction(DatabaseGreyd):
     """This class handle lobby transaction."""
 
     def __init__(self):
