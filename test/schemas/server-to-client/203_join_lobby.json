@@ -1,0 +1,90 @@
+{
+    "definitions": {},
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "http://example.com/root.json",
+    "type": "object",
+    "title": "The Root Schema",
+    "required": [
+      "success",
+      "greydRule",
+      "greydId",
+      "lobbyId"
+    ],
+    "properties": {
+      "success": {
+        "$id": "#/properties/success",
+        "type": "boolean",
+        "title": "The Success Schema",
+        "default": false,
+        "examples": [
+          true
+        ]
+      },
+      "greydRule": {
+        "$id": "#/properties/greydRule",
+        "type": "integer",
+        "title": "The Greydrule Schema",
+        "default": 0,
+        "examples": [
+          203
+        ]
+      },
+      "greydId": {
+        "$id": "#/properties/greydId",
+        "type": "integer",
+        "title": "The Greydid Schema",
+        "default": 0,
+        "examples": [
+          2
+        ]
+      },
+      "lobbyId": {
+        "$id": "#/properties/lobbyId",
+        "type": "integer",
+        "title": "The Lobbyid Schema",
+        "default": 0,
+        "examples": [
+          1
+        ]
+      },
+      "users": {
+        "$id": "#/properties/users",
+        "type": "array",
+        "title": "The Users Schema",
+        "items": {
+          "$id": "#/properties/users/items",
+          "type": "object",
+          "title": "The Items Schema",
+          "properties": {
+            "userGreydId": {
+              "$id": "#/properties/users/items/properties/userGreydId",
+              "type": "integer",
+              "title": "The Usergreydid Schema",
+              "default": 0,
+              "examples": [
+                1
+              ]
+            },
+            "userFacebookId": {
+              "$id": "#/properties/users/items/properties/userFacebookId",
+              "type": "integer",
+              "title": "The Userfacebookid Schema",
+              "default": 0,
+              "examples": [
+                123123
+              ]
+            },
+            "userScore": {
+              "$id": "#/properties/users/items/properties/userScore",
+              "type": "integer",
+              "title": "The Userscore Schema",
+              "default": 0,
+              "examples": [
+                250
+              ]
+            }
+          }
+        }
+      }
+    }
+  }

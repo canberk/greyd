@@ -1,0 +1,239 @@
+{
+    "definitions": {},
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "http://example.com/root.json",
+    "type": "object",
+    "title": "The Root Schema",
+    "required": [
+      "success",
+      "greydRule",
+      "greydId",
+      "world",
+      "city",
+      "facebookFriends"
+    ],
+    "properties": {
+      "success": {
+        "$id": "#/properties/success",
+        "type": "boolean",
+        "title": "The Success Schema",
+        "default": false,
+        "examples": [
+          true
+        ]
+      },
+      "greydRule": {
+        "$id": "#/properties/greydRule",
+        "type": "integer",
+        "title": "The Greydrule Schema",
+        "default": 0,
+        "examples": [
+          301
+        ]
+      },
+      "greydId": {
+        "$id": "#/properties/greydId",
+        "type": "integer",
+        "title": "The Greydid Schema",
+        "default": 0,
+        "examples": [
+          1
+        ]
+      },
+      "world": {
+        "$id": "#/properties/world",
+        "type": "array",
+        "title": "The World Schema",
+        "items": {
+          "$id": "#/properties/world/items",
+          "type": "object",
+          "title": "The Items Schema",
+          "required": [
+            "userGreydId",
+            "userFacebookId",
+            "userFullName",
+            "userTotalScore",
+            "userWalkingDistance"
+          ],
+          "properties": {
+            "userGreydId": {
+              "$id": "#/properties/world/items/properties/userGreydId",
+              "type": "integer",
+              "title": "The Usergreydid Schema",
+              "default": 0,
+              "examples": [
+                1
+              ]
+            },
+            "userFacebookId": {
+              "$id": "#/properties/world/items/properties/userFacebookId",
+              "type": "integer",
+              "title": "The Userfacebookid Schema",
+              "default": 0,
+              "examples": [
+                123421
+              ]
+            },
+            "userFullName": {
+              "$id": "#/properties/world/items/properties/userFullName",
+              "type": "string",
+              "title": "The Userfullname Schema",
+              "default": "",
+              "examples": [
+                "Test Main3"
+              ],
+              "pattern": "^(.*)$"
+            },
+            "userTotalScore": {
+              "$id": "#/properties/world/items/properties/userTotalScore",
+              "type": "integer",
+              "title": "The Usertotalscore Schema",
+              "default": 0,
+              "examples": [
+                265
+              ]
+            },
+            "userWalkingDistance": {
+              "$id": "#/properties/world/items/properties/userWalkingDistance",
+              "type": "integer",
+              "title": "The Userwalkingdistance Schema",
+              "default": 0,
+              "examples": [
+                645
+              ]
+            }
+          }
+        }
+      },
+      "city": {
+        "$id": "#/properties/city",
+        "type": "array",
+        "title": "The City Schema",
+        "items": {
+          "$id": "#/properties/city/items",
+          "type": "object",
+          "title": "The Items Schema",
+          "required": [
+            "userGreydId",
+            "userFacebookId",
+            "userFullName",
+            "userTotalScore",
+            "userWalkingDistance"
+          ],
+          "properties": {
+            "userGreydId": {
+              "$id": "#/properties/city/items/properties/userGreydId",
+              "type": "integer",
+              "title": "The Usergreydid Schema",
+              "default": 0,
+              "examples": [
+                1
+              ]
+            },
+            "userFacebookId": {
+              "$id": "#/properties/city/items/properties/userFacebookId",
+              "type": "integer",
+              "title": "The Userfacebookid Schema",
+              "default": 0,
+              "examples": [
+                123421
+              ]
+            },
+            "userFullName": {
+              "$id": "#/properties/city/items/properties/userFullName",
+              "type": "string",
+              "title": "The Userfullname Schema",
+              "default": "",
+              "examples": [
+                "Test Main3"
+              ],
+              "pattern": "^(.*)$"
+            },
+            "userTotalScore": {
+              "$id": "#/properties/city/items/properties/userTotalScore",
+              "type": "integer",
+              "title": "The Usertotalscore Schema",
+              "default": 0,
+              "examples": [
+                265
+              ]
+            },
+            "userWalkingDistance": {
+              "$id": "#/properties/city/items/properties/userWalkingDistance",
+              "type": "integer",
+              "title": "The Userwalkingdistance Schema",
+              "default": 0,
+              "examples": [
+                645
+              ]
+            }
+          }
+        }
+      },
+      "facebookFriends": {
+        "$id": "#/properties/facebookFriends",
+        "type": "array",
+        "title": "The Facebookfriends Schema",
+        "items": {
+          "$id": "#/properties/facebookFriends/items",
+          "type": "object",
+          "title": "The Items Schema",
+          "required": [
+            "userGreydId",
+            "userFacebookId",
+            "userFullName",
+            "userTotalScore",
+            "userWalkingDistance"
+          ],
+          "properties": {
+            "userGreydId": {
+              "$id": "#/properties/facebookFriends/items/properties/userGreydId",
+              "type": "integer",
+              "title": "The Usergreydid Schema",
+              "default": 0,
+              "examples": [
+                1
+              ]
+            },
+            "userFacebookId": {
+              "$id": "#/properties/facebookFriends/items/properties/userFacebookId",
+              "type": "integer",
+              "title": "The Userfacebookid Schema",
+              "default": 0,
+              "examples": [
+                123421
+              ]
+            },
+            "userFullName": {
+              "$id": "#/properties/facebookFriends/items/properties/userFullName",
+              "type": "string",
+              "title": "The Userfullname Schema",
+              "default": "",
+              "examples": [
+                "Test Main3"
+              ],
+              "pattern": "^(.*)$"
+            },
+            "userTotalScore": {
+              "$id": "#/properties/facebookFriends/items/properties/userTotalScore",
+              "type": "integer",
+              "title": "The Usertotalscore Schema",
+              "default": 0,
+              "examples": [
+                265
+              ]
+            },
+            "userWalkingDistance": {
+              "$id": "#/properties/facebookFriends/items/properties/userWalkingDistance",
+              "type": "integer",
+              "title": "The Userwalkingdistance Schema",
+              "default": 0,
+              "examples": [
+                645
+              ]
+            }
+          }
+        }
+      }
+    }
+  }

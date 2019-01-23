@@ -1,0 +1,41 @@
+{
+    "definitions": {},
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "http://example.com/root.json",
+    "type": "object",
+    "title": "Guest Login Schema",
+    "required": [
+      "success",
+      "greydRule",
+      "guestId"
+    ],
+    "properties": {
+      "success": {
+        "$id": "#/properties/success",
+        "type": "boolean",
+        "title": "Success",
+        "default": true,
+        "examples": [
+          false
+        ]
+      },
+      "greydRule": {
+        "$id": "#/properties/greydRule",
+        "type": "integer",
+        "title": "GreydRule",
+        "default": 0,
+        "examples": [
+          402
+        ]
+      },
+      "guestId": {
+        "$id": "#/properties/guestId",
+        "type": "integer",
+        "title": "GuestId",
+        "default": 0,
+        "examples": [
+          1
+        ]
+      }
+    }
+  }

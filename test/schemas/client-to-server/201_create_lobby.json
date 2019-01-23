@@ -1,0 +1,10 @@
+{
+    "success" : true,
+    "greydRule" : 201,
+    "greydId" : 1,
+    "lobbyName" : "Lobby Test 1",
+    "lobbyDistance" : 25,
+    "gameMaxTime" : 12,
+    "gameMaxLife" : 10,
+    "lobbyCenterLocation" : "40.657894,40.568745"
+}

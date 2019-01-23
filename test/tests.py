@@ -3,9 +3,22 @@
 
 import json
 import socket
+import pytest
 import config
 from greydcrypt import crypt
 from assertions import assert_valid_schema
+
+SCHEMAS = [
+    "401_facebook_login",
+    "402_guest_login",
+    "201_create_lobby",
+    "202_find_lobbies",
+    "203_join_lobby",
+    "102_refresh_lobby",
+    "101_refresh_user_in_game",
+    "302_get_statistics",
+    "301_get_score_info"
+]
 
 
 def send_socket_request(request):
@@ -20,9 +33,12 @@ def send_socket_request(request):
     json_data = json.loads(response)
     return json_data
 
-def test_facebook_user_login():
-    """401 Facebook login or new Facebook create"""
-    file = open("schemas/client-to-server/401-facebook-login.json")
-    json_data = send_socket_request(file.read())
-    assert_valid_schema(json_data, "schemas/server-to-client/401-facebook-login.json")
 
+@pytest.mark.parametrize("schema", SCHEMAS)
+def test_schemas(schema):
+    """Test all schemas"""
+    
+    file = open("schemas/client-to-server/" + schema + ".json")
+    json_data = send_socket_request(file.read())
+    assert_valid_schema(json_data, "schemas/server-to-client/" 
+                                    + schema + ".json")

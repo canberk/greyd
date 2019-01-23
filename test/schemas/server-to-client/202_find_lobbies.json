@@ -1,0 +1,127 @@
+{
+    "definitions": {},
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "http://example.com/root.json",
+    "type": "object",
+    "title": "The Root Schema",
+    "required": [
+      "success",
+      "greydRule"
+    ],
+    "properties": {
+      "success": {
+        "$id": "#/properties/success",
+        "type": "boolean",
+        "title": "The Success Schema",
+        "default": false,
+        "examples": [
+          true
+        ]
+      },
+      "greydRule": {
+        "$id": "#/properties/greydRule",
+        "type": "integer",
+        "title": "The Greydrule Schema",
+        "default": 0,
+        "examples": [
+          202
+        ]
+      },
+      "lobbies": {
+        "$id": "#/properties/lobbies",
+        "type": "array",
+        "title": "The Lobbies Schema",
+        "items": {
+          "$id": "#/properties/lobbies/items",
+          "type": "object",
+          "title": "The Items Schema",
+          "properties": {
+            "lobbyId": {
+              "$id": "#/properties/lobbies/items/properties/lobbyId",
+              "type": "integer",
+              "title": "The Lobbyid Schema",
+              "default": 0,
+              "examples": [
+                1
+              ]
+            },
+            "lobbyName": {
+              "$id": "#/properties/lobbies/items/properties/lobbyName",
+              "type": "string",
+              "title": "The Lobbyname Schema",
+              "default": "",
+              "examples": [
+                "Lobby Test Name 1"
+              ],
+              "pattern": "^(.*)$"
+            },
+            "lobbyCreatorGreydId": {
+              "$id": "#/properties/lobbies/items/properties/lobbyCreatorGreydId",
+              "type": "integer",
+              "title": "The Lobbycreatorgreydid Schema",
+              "default": 0,
+              "examples": [
+                1
+              ]
+            },
+            "lobbyCreatorFullName": {
+              "$id": "#/properties/lobbies/items/properties/lobbyCreatorFullName",
+              "type": "string",
+              "title": "The Lobbycreatorfullname Schema",
+              "default": "",
+              "examples": [
+                "Test Main1"
+              ],
+              "pattern": "^(.*)$"
+            },
+            "lobbyCreatorFacebokId": {
+              "$id": "#/properties/lobbies/items/properties/lobbyCreatorFacebokId",
+              "type": "integer",
+              "title": "The Lobbycreatorfacebokid Schema",
+              "default": 0,
+              "examples": [
+                321456
+              ]
+            },
+            "gameMaxTime": {
+              "$id": "#/properties/lobbies/items/properties/gameMaxTime",
+              "type": "integer",
+              "title": "The Gamemaxtime Schema",
+              "default": 0,
+              "examples": [
+                5
+              ]
+            },
+            "gameMaxLife": {
+              "$id": "#/properties/lobbies/items/properties/gameMaxLife",
+              "type": "integer",
+              "title": "The Gamemaxlife Schema",
+              "default": 0,
+              "examples": [
+                3
+              ]
+            },
+            "lobbyGameDistance": {
+              "$id": "#/properties/lobbies/items/properties/lobbyGameDistance",
+              "type": "integer",
+              "title": "The Lobbygamedistance Schema",
+              "default": 0,
+              "examples": [
+                25
+              ]
+            },
+            "lobbyCenterLocation": {
+              "$id": "#/properties/lobbies/items/properties/lobbyCenterLocation",
+              "type": "string",
+              "title": "The Lobbycenterlocation Schema",
+              "default": "",
+              "examples": [
+                "40.564654,40.654654"
+              ],
+              "pattern": "^(.*)$"
+            }
+          }
+        }
+      }
+    }
+  }

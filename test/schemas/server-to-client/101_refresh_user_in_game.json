@@ -1,0 +1,180 @@
+{
+    "definitions": {},
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "http://example.com/root.json",
+    "type": "object",
+    "title": "The Root Schema",
+    "required": [
+      "success",
+      "greydRule",
+      "lobbyId",
+      "lobbyStatus",
+      "currentBaitLocation",
+      "lastWinnerForBaitGreydId",
+      "lobbyExtra",
+      "greydId",
+      "totalBait",
+      "totalScore",
+      "users"
+    ],
+    "properties": {
+      "success": {
+        "$id": "#/properties/success",
+        "type": "boolean",
+        "title": "The Success Schema",
+        "default": false,
+        "examples": [
+          true
+        ]
+      },
+      "greydRule": {
+        "$id": "#/properties/greydRule",
+        "type": "integer",
+        "title": "The Greydrule Schema",
+        "default": 0,
+        "examples": [
+          101
+        ]
+      },
+      "lobbyId": {
+        "$id": "#/properties/lobbyId",
+        "type": "integer",
+        "title": "The Lobbyid Schema",
+        "default": 0,
+        "examples": [
+          1
+        ]
+      },
+      "lobbyStatus": {
+        "$id": "#/properties/lobbyStatus",
+        "type": "integer",
+        "title": "The Lobbystatus Schema",
+        "default": 0,
+        "examples": [
+          0
+        ]
+      },
+      "currentBaitLocation": {
+        "$id": "#/properties/currentBaitLocation",
+        "type": "string",
+        "title": "The Currentbaitlocation Schema",
+        "default": "",
+        "examples": [
+          "42.654132,43.489662"
+        ],
+        "pattern": "^(.*)$"
+      },
+      "lastWinnerForBaitGreydId": {
+        "$id": "#/properties/lastWinnerForBaitGreydId",
+        "type": "integer",
+        "title": "The Lastwinnerforbaitgreydid Schema",
+        "default": 0,
+        "examples": [
+          1
+        ]
+      },
+      "lobbyExtra": {
+        "$id": "#/properties/lobbyExtra",
+        "type": "string",
+        "title": "The Lobbyextra Schema",
+        "default": "",
+        "examples": [
+          "25"
+        ],
+        "pattern": "^(.*)$"
+      },
+      "greydId": {
+        "$id": "#/properties/greydId",
+        "type": "integer",
+        "title": "The Greydid Schema",
+        "default": 0,
+        "examples": [
+          1
+        ]
+      },
+      "totalBait": {
+        "$id": "#/properties/totalBait",
+        "type": "integer",
+        "title": "The Totalbait Schema",
+        "default": 0,
+        "examples": [
+          3
+        ]
+      },
+      "totalScore": {
+        "$id": "#/properties/totalScore",
+        "type": "integer",
+        "title": "The Totalscore Schema",
+        "default": 0,
+        "examples": [
+          60
+        ]
+      },
+      "users": {
+        "$id": "#/properties/users",
+        "type": "array",
+        "title": "The Users Schema",
+        "items": {
+          "$id": "#/properties/users/items",
+          "type": "object",
+          "title": "The Items Schema",
+          "required": [
+            "userGreydId",
+            "userFacebookId",
+            "userFullName",
+            "userLocation",
+            "userTotalBait"
+          ],
+          "properties": {
+            "userGreydId": {
+              "$id": "#/properties/users/items/properties/userGreydId",
+              "type": "integer",
+              "title": "The Usergreydid Schema",
+              "default": 0,
+              "examples": [
+                1
+              ]
+            },
+            "userFacebookId": {
+              "$id": "#/properties/users/items/properties/userFacebookId",
+              "type": "integer",
+              "title": "The Userfacebookid Schema",
+              "default": 0,
+              "examples": [
+                652354
+              ]
+            },
+            "userFullName": {
+              "$id": "#/properties/users/items/properties/userFullName",
+              "type": "string",
+              "title": "The Userfullname Schema",
+              "default": "",
+              "examples": [
+                "Test Main1"
+              ],
+              "pattern": "^(.*)$"
+            },
+            "userLocation": {
+              "$id": "#/properties/users/items/properties/userLocation",
+              "type": "string",
+              "title": "The Userlocation Schema",
+              "default": "",
+              "examples": [
+                "46.445215,41.654123"
+              ],
+              "pattern": "^(.*)$"
+            },
+            "userTotalBait": {
+              "$id": "#/properties/users/items/properties/userTotalBait",
+              "type": "integer",
+              "title": "The Usertotalbait Schema",
+              "default": 0,
+              "examples": [
+                5
+              ]
+            }
+          }
+        }
+      }
+    }
+  }

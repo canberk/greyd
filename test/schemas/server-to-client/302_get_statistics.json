@@ -1,0 +1,112 @@
+{
+    "definitions": {},
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "http://example.com/root.json",
+    "type": "object",
+    "title": "The Root Schema",
+    "required": [
+      "success",
+      "greydRule",
+      "greydId",
+      "facebookId",
+      "totalScore",
+      "totalWalk",
+      "totalGameTime",
+      "collectedBait",
+      "totalGame",
+      "wonGame"
+    ],
+    "properties": {
+      "success": {
+        "$id": "#/properties/success",
+        "type": "boolean",
+        "title": "The Success Schema",
+        "default": false,
+        "examples": [
+          true
+        ]
+      },
+      "greydRule": {
+        "$id": "#/properties/greydRule",
+        "type": "integer",
+        "title": "The Greydrule Schema",
+        "default": 0,
+        "examples": [
+          302
+        ]
+      },
+      "greydId": {
+        "$id": "#/properties/greydId",
+        "type": "integer",
+        "title": "The Greydid Schema",
+        "default": 0,
+        "examples": [
+          1
+        ]
+      },
+      "facebookId": {
+        "$id": "#/properties/facebookId",
+        "type": "integer",
+        "title": "The Facebookid Schema",
+        "default": 0,
+        "examples": [
+          654235
+        ]
+      },
+      "totalScore": {
+        "$id": "#/properties/totalScore",
+        "type": "integer",
+        "title": "The Totalscore Schema",
+        "default": 0,
+        "examples": [
+          2250
+        ]
+      },
+      "totalWalk": {
+        "$id": "#/properties/totalWalk",
+        "type": "integer",
+        "title": "The Totalwalk Schema",
+        "default": 0,
+        "examples": [
+          2354
+        ]
+      },
+      "totalGameTime": {
+        "$id": "#/properties/totalGameTime",
+        "type": "string",
+        "title": "The Totalgametime Schema",
+        "default": "",
+        "examples": [
+          "45:63"
+        ],
+        "pattern": "^(.*)$"
+      },
+      "collectedBait": {
+        "$id": "#/properties/collectedBait",
+        "type": "integer",
+        "title": "The Collectedbait Schema",
+        "default": 0,
+        "examples": [
+          54
+        ]
+      },
+      "totalGame": {
+        "$id": "#/properties/totalGame",
+        "type": "integer",
+        "title": "The Totalgame Schema",
+        "default": 0,
+        "examples": [
+          12
+        ]
+      },
+      "wonGame": {
+        "$id": "#/properties/wonGame",
+        "type": "integer",
+        "title": "The Wongame Schema",
+        "default": 0,
+        "examples": [
+          5
+        ]
+      }
+    }
+  }

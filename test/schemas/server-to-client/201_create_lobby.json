@@ -1,0 +1,51 @@
+{
+    "definitions": {},
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "http://example.com/root.json",
+    "type": "object",
+    "title": "The Root Schema",
+    "required": [
+      "success",
+      "greydRule",
+      "lobbyId",
+      "lobbyStatus"
+    ],
+    "properties": {
+      "success": {
+        "$id": "#/properties/success",
+        "type": "boolean",
+        "title": "The Success Schema",
+        "default": false,
+        "examples": [
+          true
+        ]
+      },
+      "greydRule": {
+        "$id": "#/properties/greydRule",
+        "type": "integer",
+        "title": "The Greydrule Schema",
+        "default": 0,
+        "examples": [
+          201
+        ]
+      },
+      "lobbyId": {
+        "$id": "#/properties/lobbyId",
+        "type": "integer",
+        "title": "The Lobbyid Schema",
+        "default": 0,
+        "examples": [
+          1
+        ]
+      },
+      "lobbyStatus": {
+        "$id": "#/properties/lobbyStatus",
+        "type": "integer",
+        "title": "The Lobbystatus Schema",
+        "default": 0,
+        "examples": [
+          0
+        ]
+      }
+    }
+  }
