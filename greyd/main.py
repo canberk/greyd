@@ -15,7 +15,6 @@
 import os
 import socket
 import threading
-import greydcrypt
 import json
 import logging.config
 import config
@@ -30,6 +29,7 @@ LOGGER = logging.getLogger(__name__)
 
 def main_loop():
     """Socket programming main loop"""
+
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.bind((config.HOST, config.PORT))
     LOGGER.info("Server is up")
@@ -118,8 +118,8 @@ def setup_logging(
         path = value
     if os.path.exists(path):
         with open(path, 'rt') as file:
-            config = json.load(file)
-        logging.config.dictConfig(config)
+            log_config = json.load(file)
+        logging.config.dictConfig(log_config)
     else:
         logging.basicConfig(level=default_level)
 

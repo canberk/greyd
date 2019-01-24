@@ -1,155 +1,129 @@
 {
-    "definitions": {},
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "http://example.com/root.json",
-    "type": "object",
-    "title": "The Root Schema",
-    "required": [
-      "success",
-      "greydRule",
-      "lobbyId",
-      "lobbyStatus"
-    ],
-    "properties": {
-      "success": {
-        "$id": "#/properties/success",
-        "type": "boolean",
-        "title": "The Success Schema",
-        "default": false,
-        "examples": [
-          true
-        ]
-      },
-      "greydRule": {
-        "$id": "#/properties/greydRule",
-        "type": "integer",
-        "title": "The Greydrule Schema",
-        "default": 0,
-        "examples": [
-          102
-        ]
-      },
-      "lobbyId": {
-        "$id": "#/properties/lobbyId",
-        "type": "integer",
-        "title": "The Lobbyid Schema",
-        "default": 0,
-        "examples": [
-          1
-        ]
-      },
-      "lobbyStatus": {
-        "$id": "#/properties/lobbyStatus",
-        "type": "integer",
-        "title": "The Lobbystatus Schema",
-        "default": 0,
-        "examples": [
-          0
-        ]
-      },
-      "baitLocation": {
-        "$id": "#/properties/baitLocation",
-        "type": "string",
-        "title": "The Baitlocation Schema",
-        "default": "",
-        "examples": [
-          "42.654654,42.564465"
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://example.com/root.json",
+  "type": "object",
+  "title": "The Root Schema",
+  "required": [
+    "success",
+    "greydRule",
+    "lobbyId",
+    "lobbyStatus",
+    "baitLocation",
+    "users"
+  ],
+  "properties": {
+    "success": {
+      "$id": "#/properties/success",
+      "type": "boolean",
+      "title": "The Success Schema",
+      "default": false,
+      "examples": [
+        true
+      ]
+    },
+    "greydRule": {
+      "$id": "#/properties/greydRule",
+      "type": "integer",
+      "title": "The Greydrule Schema",
+      "default": 0,
+      "examples": [
+        102
+      ]
+    },
+    "lobbyId": {
+      "$id": "#/properties/lobbyId",
+      "type": "integer",
+      "title": "The Lobbyid Schema",
+      "default": 0,
+      "examples": [
+        1
+      ]
+    },
+    "lobbyStatus": {
+      "$id": "#/properties/lobbyStatus",
+      "type": "integer",
+      "title": "The Lobbystatus Schema",
+      "default": 0,
+      "examples": [
+        0
+      ]
+    },
+    "baitLocation": {
+      "$id": "#/properties/baitLocation",
+      "type": "string",
+      "title": "The Baitlocation Schema",
+      "default": "",
+      "examples": [
+        "42.654654,42.564465"
+      ],
+      "pattern": "^(.*)$"
+    },
+    "users": {
+      "$id": "#/properties/users",
+      "type": "array",
+      "title": "The Users Schema",
+      "items": {
+        "$id": "#/properties/users/items",
+        "type": "object",
+        "title": "The Items Schema",
+        "required": [
+          "userFullName",
+          "userGreydId",
+          "userFacebookId",
+          "userScore"
         ],
-        "pattern": "^(.*)$"
-      },
-      "users": {
-        "$id": "#/properties/users",
-        "type": "array",
-        "title": "The Users Schema",
-        "items": {
-          "$id": "#/properties/users/items",
-          "type": "object",
-          "title": "The Items Schema",
-          "properties": {
-            "userFullName": {
-              "$id": "#/properties/users/items/properties/userFullName",
+        "properties": {
+          "userFullName": {
+            "$id": "#/properties/users/items/properties/userFullName",
+            "type": "string",
+            "title": "The Userfullname Schema",
+            "default": "",
+            "examples": [
+              "Test Main1"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "userGreydId": {
+            "$id": "#/properties/users/items/properties/userGreydId",
+            "type": "integer",
+            "title": "The Usergreydid Schema",
+            "default": 0,
+            "examples": [
+              1
+            ]
+          },
+          "userFacebookId": {
+            "$id": "#/properties/users/items/properties/userFacebookId",
+            "type": "integer",
+            "title": "The Userfacebookid Schema",
+            "default": 0,
+            "examples": [
+              123456
+            ]
+          },
+          "userScore": {
+            "$id": "#/properties/users/items/properties/userScore",
+            "type": "integer",
+            "title": "The Userscore Schema",
+            "default": 0,
+            "examples": [
+              250
+            ]
+          },
+          "chat": {
+            "$id": "#/properties/users/items/properties/chat",
+            "type": "array",
+            "title": "The Chat Schema",
+            "items": {
+              "$id": "#/properties/users/items/properties/chat/items",
               "type": "string",
-              "title": "The Userfullname Schema",
+              "title": "The Items Schema",
               "default": "",
               "examples": [
-                "Test Main1"
-              ],
-              "pattern": "^(.*)$"
-            },
-            "userGreydId": {
-              "$id": "#/properties/users/items/properties/userGreydId",
-              "type": "integer",
-              "title": "The Usergreydid Schema",
-              "default": 0,
-              "examples": [
-                1
-              ]
-            },
-            "userFacebookId": {
-              "$id": "#/properties/users/items/properties/userFacebookId",
-              "type": "integer",
-              "title": "The Userfacebookid Schema",
-              "default": 0,
-              "examples": [
-                321123
-              ]
-            },
-            "userScore": {
-              "$id": "#/properties/users/items/properties/userScore",
-              "type": "integer",
-              "title": "The Userscore Schema",
-              "default": 0,
-              "examples": [
-                250
-              ]
-            }
-          }
-        }
-      },
-      "chat": {
-        "$id": "#/properties/chat",
-        "type": "array",
-        "title": "The Chat Schema",
-        "items": {
-          "$id": "#/properties/chat/items",
-          "type": "object",
-          "title": "The Items Schema",
-          "properties": {
-            "time": {
-              "$id": "#/properties/chat/items/properties/time",
-              "type": "string",
-              "title": "The Time Schema",
-              "default": "",
-              "examples": [
-                "12:15:56"
-              ],
-              "pattern": "^(.*)$"
-            },
-            "userGreydId": {
-              "$id": "#/properties/chat/items/properties/userGreydId",
-              "type": "integer",
-              "title": "The Usergreydid Schema",
-              "default": 0,
-              "examples": [
-                1
-              ]
-            },
-            "userFacebookId": {
-              "$id": "#/properties/chat/items/properties/userFacebookId",
-              "type": "integer",
-              "title": "The Userfacebookid Schema",
-              "default": 0,
-              "examples": [
-                654321
-              ]
-            },
-            "chatContent": {
-              "$id": "#/properties/chat/items/properties/chatContent",
-              "type": "string",
-              "title": "The Chatcontent Schema",
-              "default": "",
-              "examples": [
-                "Test text"
+                "Test Chat 1",
+                "Test Chat 2",
+                "Test Chat 3"
               ],
               "pattern": "^(.*)$"
             }
@@ -158,3 +132,4 @@
       }
     }
   }
+}

@@ -1,20 +1,12 @@
 {
-    "success" : true,
-    "greydRule" : 102,
-    "greydId" : 1,
-    "lobbyId" : 1,
-    "lobbyChat" : [
-        {
-            "time" : "12:00:45",
-            "lobbyChatText" : "Test Message 1"
-        },
-        {
-            "time": "12:00:46",
-            "lobbyChatText": "Test Message 2"
-        },
-        {
-            "time": "12:00:47",
-            "lobbyChatText": "Test Message 3"
-        }
+    "success": true,
+    "greydRule": 102,
+    "greydId": 1,
+    "lobbyId": 1,
+    "lastSeenChatId": 1,
+    "lobbyChat": [
+        "Test Message 1",
+        "Test Message 2",
+        "Test Message 3"
     ]
 }

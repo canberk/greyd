@@ -211,7 +211,8 @@ class LobbyTransaction(DatabaseGreyd):
                 current_bait_location=? WHERE lobby_id=?
                 """, (1, self.time_now, bait, lobby_id,))
                 response["firstBaitLocation"] = bait
-                self.logger.info("Lobby started the game LobbyId: %s", lobby_id)
+                self.logger.info(
+                    "Lobby started the game LobbyId: %s", lobby_id)
 
             else:
                 response["success"] = False
@@ -226,6 +227,7 @@ class LobbyTransaction(DatabaseGreyd):
 
         with sql.connect(self.db_path) as database:
             cursor = database.cursor()
+
             # Is lobby creator?
             lobby_info = cursor.execute("""
             SELECT lobby_owner_greyd_id, 
@@ -233,6 +235,7 @@ class LobbyTransaction(DatabaseGreyd):
             FROM lobbies
             WHERE lobby_id=?
             """, (lobby_id,)).fetchone()
+            # Close lobby
             if lobby_id == lobby_info[0] and lobby_info[1] == 1:
                 # TODO(canberk) Find the game winner and proccess and building user_location table
                 cursor.execute("""
@@ -247,8 +250,9 @@ class LobbyTransaction(DatabaseGreyd):
                 SET user_lobby_exit_time=?
                 WHERE lobby_id=?
                 """, (self.time_now, lobby_id,))
-                self.logger("Lobby %s terminated by greydId: %s", (lobby_id,
-                                                                   greyd_id))
+                self.logger.info("Lobby %s terminated by greydId: %s",
+                                 (lobby_id, greyd_id))
+            # if person is normal user
             else:
                 cursor.execute("""
                 UPDATE user_to_lobby 

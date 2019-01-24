@@ -4,7 +4,7 @@
     File name: user_login.py
     Author: Canberk Özdemir
     Date created: 2/5/2018
-    Date last modified: 1/22/2019
+    Date last modified: 1/24/2019
     Python version: 3.7.2
 
     User login service module.
@@ -15,6 +15,7 @@ import sqlite3 as sql
 import json
 import logging
 import requests
+import config
 from database import DatabaseGreyd
 
 
@@ -50,7 +51,7 @@ class UserLogin(DatabaseGreyd):
                 .fetchone()
 
             # Is this user registered before on database?
-            if  not user:
+            if not user:
                 cursor.execute("""
                 INSERT INTO user 
                     (facebook_id, 
@@ -103,10 +104,10 @@ class UserLogin(DatabaseGreyd):
         result_city = ""
         for i in range(5):
             request_map_api = requests.get(
-                f"https://maps.googleapis.com/maps/api/geocode/json?latlng={location}&sensor=true&key=AIzaSyBkIAg4XR1OvXV8abfltn7krOACCLBDmoQ")
+                f"https://maps.googleapis.com/maps/api/geocode/json?latlng={location}&sensor=true&key={config.GOOGLEAPIS_KEY_CODE}")
             map_json_parse = json.loads(request_map_api.text)
             try:
-                for i in range(10):
+                for y in range(10):
                     result_level = map_json_parse["results"][0]["address_components"][i]["types"][0]
                     if result_level == "administrative_area_level_1":
                         result_city = map_json_parse["results"][0]["address_components"][i]["long_name"]
