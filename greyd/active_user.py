@@ -76,7 +76,12 @@ class ActiveUser(DatabaseGreyd):
                                           FROM lobbies WHERE lobby_id=?
                                           """, (lobby_id,)).fetchone()
                 response["lobbyStatus"] = lobby_info[0]
-                response["baitLocation"] = lobby_info[1]
+
+                # If lobby creator started the game
+                if lobby_info[1] is None:
+                    response["baitLocation"] = ""
+                else:
+                    response["baitLocation"] = lobby_info[1]
 
                 users = cursor.execute("""SELECT user.full_name,
                                           user.greyd_id,
@@ -92,7 +97,7 @@ class ActiveUser(DatabaseGreyd):
                 for user in users:
                     user_chat = []
                     user_info = {"userFullName": user[0], "userGreydId": user[1],
-                                 "userFacebookId": user[2], "userScore": user[3]}
+                                 "userFacebookId": int(user[2]), "userScore": user[3]}
 
                     chats = cursor.execute("""SELECT lobbies_chat.chat_time,
                                               lobbies_chat.chat_content 

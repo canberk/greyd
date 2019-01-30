@@ -84,6 +84,7 @@ class UserLogin(DatabaseGreyd):
 
     def __guest_login__(self, json_request):
         """Guest Login Handler"""
+        # TODO(canberk) implement guest to greyd
         location = json_request["location"]
         with sql.connect(self.db_path) as database:
             cursor = database.cursor()
@@ -100,20 +101,15 @@ class UserLogin(DatabaseGreyd):
 
     def __city_finder__(self, location):
         """City finder with google maps api"""
-        # TODO(canberk) Get better way for city finder.
+
+        latitude, longitude = location.split(",")
         result_city = ""
-        for i in range(5):
+        for _ in range(5):
             request_map_api = requests.get(
-                f"https://maps.googleapis.com/maps/api/geocode/json?latlng={location}&sensor=true&key={config.GOOGLEAPIS_KEY_CODE}")
+                f"http://api.geonames.org/findNearbyPlaceNameJSON?lat={latitude}&lng={longitude}&username={config.GEONAMES_USERNAME}")
             map_json_parse = json.loads(request_map_api.text)
             try:
-                for y in range(10):
-                    result_level = map_json_parse["results"][0]["address_components"][i]["types"][0]
-                    if result_level == "administrative_area_level_1":
-                        result_city = map_json_parse["results"][0]["address_components"][i]["long_name"]
-                        break
-                if result_city != "":
-                    break
+                result_city = map_json_parse["geonames"][0]["adminName1"]
             except IndexError:
                 result_city = ""
 

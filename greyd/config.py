@@ -8,7 +8,7 @@ PORT = int(os.environ["PORT"])
 DB_NAME = "greyd.db"
 DB_PATH = "/db"
 
-GOOGLEAPIS_KEY_CODE = os.environ["GOOGLEAPIS_KEY_CODE"]
+GEONAMES_USERNAME = os.environ["GEONAMES_USERNAME"]
 
 SERVER_PRIVATE_RSA_KEY = tuple(
     map(int, os.environ["SERVER_PRIVATE_RSA"].split(",")))

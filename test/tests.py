@@ -3,6 +3,7 @@
 
 import json
 import socket
+import glob
 import pytest
 import config
 from greydcrypt import crypt
@@ -10,12 +11,13 @@ from assertions import assert_valid_schema
 
 SCHEMAS = [
     "401_facebook_login",
+    "401_facebook_login_2",
     "402_guest_login",
     "201_create_lobby",
     "202_find_lobbies",
     "203_join_lobby",
-    "204_start_game",
     "102_refresh_lobby",
+    "204_start_game",
     "101_refresh_user_in_game",
     "205_quit_lobby",
     "302_get_statistics",
@@ -42,5 +44,7 @@ def test_schemas(schema):
 
     file = open("schemas/client-to-server/" + schema + ".json")
     json_data = send_socket_request(file.read())
-    assert_valid_schema(json_data, "schemas/server-to-client/"
-                        + schema + ".json")
+    greyd_rule = schema[:3]
+    assert_file = glob.glob("schemas/server-to-client/"
+                            + greyd_rule + "*")
+    assert_valid_schema(json_data, assert_file[0])

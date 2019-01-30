@@ -20,7 +20,7 @@ from database import DatabaseGreyd
 
 
 class LobbyTransaction(DatabaseGreyd):
-    """This class handle lobby transaction."""
+    """ This class handle lobby transaction. """
 
     def __init__(self):
         super(LobbyTransaction, self).__init__()
@@ -175,7 +175,8 @@ class LobbyTransaction(DatabaseGreyd):
             for i in users:
                 json_list.append({"userGreydId": i[0], "userFacebookId": i[1]})
 
-        response = {"success": True, "greydRule": 203, "lobbies": json_list}
+        response = {"success": True, "greydRule": 203,
+                    "greydId": greyd_id, "lobbyId": lobby_id, "lobbies": json_list}
         return response
 
     def __start_game__(self, json_request):
@@ -250,8 +251,8 @@ class LobbyTransaction(DatabaseGreyd):
                 SET user_lobby_exit_time=?
                 WHERE lobby_id=?
                 """, (self.time_now, lobby_id,))
-                self.logger.info("Lobby %s terminated by greydId: %s",
-                                 (lobby_id, greyd_id))
+                self.logger.info(
+                    "Lobby %s terminated by greydId: %s", (lobby_id, greyd_id))
             # if person is normal user
             else:
                 cursor.execute("""
