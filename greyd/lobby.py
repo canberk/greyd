@@ -198,6 +198,7 @@ class LobbyTransaction(DatabaseGreyd):
 
             if greyd_id == lobby_info[0]:
                 response["success"] = True
+                response["lobbyId"] = lobby_id
                 response["lobbyStatus"] = 1
                 # First bait create
                 # TODO(canberk) Check random 100 999 is enough?
