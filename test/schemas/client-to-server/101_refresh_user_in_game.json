@@ -1,21 +1,13 @@
 {
-    "success" : true,
-    "greydRule" : 101,
-    "greydId" : 1,
-    "lobbyId" : 1,
-    "location" : "40.657894,40.568745",
+    "success": true,
+    "greydRule": 101,
+    "greydId": 1,
+    "lobbyId": 1,
+    "location": "40.657894,40.568745",
+    "lastSeenChatId": 1,
     "lobbyChat": [
-        {
-            "time": "12:01:45",
-            "lobbyChatText": "Test Message 1"
-        },
-        {
-            "time": "12:01:46",
-            "lobbyChatText": "Test Message 2"
-        },
-        {
-            "time": "12:01:47",
-            "lobbyChatText": "Test Message 3"
-        }
-    ] 
+        "Test Message 1",
+        "Test Message 2",
+        "Test Message 3"
+    ]
 }

@@ -252,8 +252,9 @@ class LobbyTransaction(DatabaseGreyd):
                 SET user_lobby_exit_time=?
                 WHERE lobby_id=?
                 """, (self.time_now, lobby_id,))
-                self.logger.info(
-                    "Lobby %s terminated by greydId: %s", (lobby_id, greyd_id))
+                log = "Lobby {} terminated by greydId: {}".format(
+                    lobby_id, greyd_id)
+                self.logger.info(log)
             # if person is normal user
             else:
                 cursor.execute("""

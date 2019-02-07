@@ -95,7 +95,7 @@
           },
           "userFacebookId": {
             "$id": "#/properties/users/items/properties/userFacebookId",
-            "type": "integer",
+            "type": "string",
             "title": "The Userfacebookid Schema",
             "default": 0,
             "examples": [
