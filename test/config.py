@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+"""Set up environment configure."""
+
 import os
 
 HOST = "10.20.30.10"

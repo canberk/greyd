@@ -1,6 +1,8 @@
 #!/usr/bin/env/ python
 # -*- coding: utf-8 -*-
 
+"""Test Main"""
+
 import json
 import socket
 import glob
@@ -26,7 +28,8 @@ SCHEMAS = [
 
 
 def send_socket_request(request):
-    """Send json request server and take response"""
+    """Send json request server and take response."""
+    # pylint: disable=invalid-name
     crypted = crypt.encrypt(request, config.SERVER_PUBLIC_RSA_KEY)
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.connect((config.HOST, config.PORT))
@@ -40,7 +43,7 @@ def send_socket_request(request):
 
 @pytest.mark.parametrize("schema", SCHEMAS)
 def test_schemas(schema):
-    """Test all schemas"""
+    """Test all schemas."""
 
     file = open("schemas/client-to-server/" + schema + ".json")
     json_data = send_socket_request(file.read())

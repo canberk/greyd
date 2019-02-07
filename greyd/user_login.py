@@ -1,12 +1,6 @@
 # -*- coding: utf-8 -*-
 
 """
-    File name: user_login.py
-    Author: Canberk Özdemir
-    Date created: 2/5/2018
-    Date last modified: 1/24/2019
-    Python version: 3.7.2
-
     User login service module.
     Greyd Rule: 4xx
 """
@@ -37,7 +31,7 @@ class UserLogin(DatabaseGreyd):
     def __facebook_login__(self, json_request):
         """User Facebook Login Handler"""
 
-        # TODO(canberk) Android location error
+        # TODO Android location error.
         facebook_id = json_request["facebookId"]
         full_name = json_request["fullName"]
         e_mail = json_request["eMail"]
@@ -46,23 +40,26 @@ class UserLogin(DatabaseGreyd):
 
         with sql.connect(self.db_path) as database:
             cursor = database.cursor()
-            user = cursor.execute("""
-            SELECT * FROM user WHERE facebook_id=?""", (facebook_id,))\
-                .fetchone()
+            user = cursor.execute("""SELECT * FROM user WHERE facebook_id=?""",
+                                  (facebook_id,)).fetchone()
 
             # Is this user registered before on database?
             if not user:
-                cursor.execute("""
-                INSERT INTO user 
-                    (facebook_id, 
-                    full_name, 
-                    e_mail,
-                    location, 
-                    location_city
-                    ) 
-                    VALUES (?,?,?,?,?)
-                    """, (facebook_id, full_name, e_mail, location, city))
+                cursor.execute("""INSERT INTO user
+                               (facebook_id, 
+                               full_name, 
+                               e_mail,
+                               location, 
+                               location_city) 
+                               VALUES (?,?,?,?,?)
+                               """,
+                               (facebook_id,
+                                full_name,
+                                e_mail,
+                                location,
+                                city))
                 database.commit()
+
                 self.logger.info("Create new Facebook user facebookId:%s",
                                  facebook_id)
             else:
@@ -76,37 +73,48 @@ class UserLogin(DatabaseGreyd):
 
             greyd_id = user[0]
             user_status = user[4]
-        response = {"success": True, "greydRule": 401, "greydId": greyd_id,
+
+        response = {"success": True,
+                    "greydRule": 401,
+                    "greydId": greyd_id,
                     "userStatus": user_status}
+
         self.logger.info("New session for Facebook user facebookId: %s",
                          facebook_id)
         return response
 
     def __guest_login__(self, json_request):
         """Guest Login Handler"""
-        # TODO(canberk) implement guest to greyd
+        # TODO Implement guest to greyd
         location = json_request["location"]
         with sql.connect(self.db_path) as database:
             cursor = database.cursor()
+
             cursor.execute("""INSERT INTO guest (location) VALUES (?)""",
                            (location,))
             database.commit()
+
             guest = cursor.execute("""SELECT max(guest_id) FROM guest""")\
                 .fetchone()
 
             guest_id = guest[0]
-        response = {"success": True, "greydRule": 402, 'guestId': guest_id}
+        response = {"success": True,
+                    "greydRule": 402,
+                    'guestId': guest_id}
+
         self.logger.info("New guest guestId: %s", guest_id)
+
         return response
 
     def __city_finder__(self, location):
-        """City finder with google maps api"""
+        """City finder with GEONAMES maps api."""
 
         latitude, longitude = location.split(",")
         result_city = ""
+        geonames_url = f"http://api.geonames.org/findNearbyPlaceNameJSON?lat={latitude}&lng={longitude}&username={config.GEONAMES_USERNAME}"  # noqa pylint: disable=line-too-long
+
         for _ in range(5):
-            request_map_api = requests.get(
-                f"http://api.geonames.org/findNearbyPlaceNameJSON?lat={latitude}&lng={longitude}&username={config.GEONAMES_USERNAME}")
+            request_map_api = requests.get(geonames_url)
             map_json_parse = json.loads(request_map_api.text)
             try:
                 result_city = map_json_parse["geonames"][0]["adminName1"]

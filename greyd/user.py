@@ -1,14 +1,6 @@
 # -*- coding: utf-8 -*-
 
-"""
-    File name: user.py
-    Author: Canberk Özdemir
-    Date created: 2/2/2019
-    Date last modified: 2/6/2019
-    Python version: 3.7
-
-    User get, set from database.
-"""
+"""User get, set from database."""
 
 import sqlite3 as sql
 import logging
@@ -17,7 +9,7 @@ from database import DatabaseGreyd
 
 
 class User(DatabaseGreyd):
-    """ User main class """
+    """User main class."""
 
     def __init__(self, greyd_id, lobby_id, session_id):
         super(User, self).__init__()
@@ -28,19 +20,23 @@ class User(DatabaseGreyd):
         self.session_id = session_id
 
     def user_taken_bait(self):
-        """ Add point for user. """
+        """Add point for user."""
 
         with sql.connect(self.db_path) as database:
             cursor = database.cursor()
 
             # Add 1 point total user score
-            cursor.execute("""UPDATE user SET total_score = total_score + 1
-                            WHERE greyd_id=?""", (self.greyd_id,))
+            cursor.execute("""UPDATE user
+                           SET total_score=total_score+1
+                           WHERE greyd_id=?""",
+                           (self.greyd_id,))
             database.commit()
 
             # Find Game type is life or time ending?
-            game_type = cursor.execute("""SELECT game_life_number FROM lobbies
-                                        WHERE lobby_id=?""", (self.lobby_id,))
+            game_type = cursor.execute("""SELECT game_life_number
+                                       FROM lobbies
+                                       WHERE lobby_id=?""",
+                                       (self.lobby_id,))
 
             if game_type[0] == 0:
                 # Life index lobby ending.
@@ -52,6 +48,3 @@ class User(DatabaseGreyd):
                                   WHERE lobby_id=?""",
                                (self.greyd_id, self.lobby_id,))
                 database.commit()
-
-    def user_info_same_lobby(self, lobby_id):
-        pass

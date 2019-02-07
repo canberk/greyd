@@ -1,12 +1,7 @@
 # -*- coding: utf-8 -*-
 
-"""
-    File name: aes_crypt.py
-    Author: Canberk Özdemir
-    Date created: 2/5/2018
-    Date last modified: 1/22/2019
-    Python version: 3.7.2
-"""
+"""AES encrypt decrypt."""
+
 import hashlib
 from Crypto import Random
 from Crypto.Cipher import AES
@@ -14,6 +9,7 @@ from Crypto.Cipher import AES
 
 class AESCipher(object):
     """Main class for AES cipher."""
+    # pylint: disable=invalid-name
 
     def __init__(self, key):
         self.bs = 16

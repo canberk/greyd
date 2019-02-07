@@ -2,12 +2,6 @@
 # -*- coding: utf-8 -*-
 
 """
-    File name: main.py
-    Author: Canberk Özdemir
-    Date created: 9/29/2017
-    Date last modified: 1/22/2019
-    Python version: 3.7.2
-
     Greyd starting script.
     Incoming Greyd request controller.
 """
@@ -17,9 +11,9 @@ import socket
 import threading
 import json
 import logging.config
+from statistics import UserStatistics
 import config
 from greydcrypt import crypt
-from statistics import UserStatistics
 from active_user import ActiveUser
 from user_login import UserLogin
 from lobby import LobbyTransaction
@@ -28,7 +22,8 @@ LOGGER = logging.getLogger(__name__)
 
 
 def main_loop():
-    """Socket programming main loop"""
+    """Socket connection main loop"""
+    # pylint: disable=invalid-name
 
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.bind((config.HOST, config.PORT))
@@ -39,7 +34,6 @@ def main_loop():
         connection, address = s.accept()
         LOGGER.info("One incoming connection: %s", address[0])
         data = connection.recv(1024).decode()
-        # print("Cipher data: " + data)
         if data == "CloseServer" and address[0] == config.HOST:
             s.close()
             LOGGER.info("Server closed normally.")
@@ -50,12 +44,13 @@ def main_loop():
 
 
 def main_controller(connection, data, r_ip_address):
-    """Main Controller method"""
+    """Main Controller function"""
 
     try:
         request = crypt.decrypt(data, config.SERVER_PRIVATE_RSA_KEY)
     except TypeError:
-        # TODO(canberk) Write decryption error handling. Crypt base64 Incorrect padding handling
+        # TODO Write decryption error handling.
+        # TODO Crypt base64 Incorrect padding handling.
         response = 'password decryption error.'
         LOGGER.warning("Password decryption error. %s", r_ip_address)
 
@@ -66,7 +61,7 @@ def main_controller(connection, data, r_ip_address):
         is_success = json_output["success"]
     except (IndexError, ValueError, TypeError):
         # Incoming json data is not correct or not json.
-        # TODO(canberk) Write Response Json
+        # TODO Write Response Json
         LOGGER.warning("Incoming json data is not correct or not json. %s",
                        r_ip_address)
         is_success = False
@@ -91,27 +86,29 @@ def main_controller(connection, data, r_ip_address):
             response = user_login.entry(greyd_rule, json_output)
             del user_login
         elif greyd_rotation == 5:
-            # TODO(canberk) Create class for server information monitored
+            # TODO Create class for server information monitored
             pass
         else:
             response = "Undefined greyd_rule request."
             LOGGER.error("Undefined greyd_rule request. %s", r_ip_address)
         response = json.dumps(response, sort_keys=True)
+
     else:
-        # TODO(canberk) Unsuccesful request handling
+        # TODO Unsuccesful request handling
         response = "Unsuccessful request \n" + request + " X " + request
-        LOGGER.warning(
-            "Unsuccessful request: " + request + "Address:" + r_ip_address)
+        LOGGER.warning("Unsuccessful request: " +
+                       request + "Address:" + r_ip_address)
 
     print("Response: " + response)
     response = crypt.encrypt(response, config.CLIENT_PUBLIC_RSA_KEY)
     connection.send(response)
 
 
-def setup_logging(
-        default_path='logging.json', default_level=logging.INFO,
-        env_key='LOG_CFG'):
+def setup_logging(default_path='logging.json',
+                  default_level=logging.INFO,
+                  env_key='LOG_CFG'):
     """Setup logging configuration"""
+
     path = default_path
     value = os.getenv(env_key, None)
     if value:

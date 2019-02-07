@@ -1,3 +1,7 @@
+# -*- coding: utf-8 -*-
+
+"""Compare response json file and json schema."""
+
 import json
 from os.path import join, dirname
 from jsonschema import validate

@@ -1,12 +1,6 @@
 # -*- coding: utf-8 -*-
 
 """
-    File name: statistics.py
-    Author: Canberk Özdemir
-    Date created: 5/23/2018
-    Date last modified: 1/22/2019
-    Python version: 3.7.2
-
     User statistics module.
     Greyd Rule: 3xx
 """

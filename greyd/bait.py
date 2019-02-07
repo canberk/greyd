@@ -1,14 +1,6 @@
 # -*- coding: utf-8 -*-
 
-"""
-    File name: bait.py
-    Author: Canberk Özdemir
-    Date created: 2/2/2019
-    Date last modified: 2/2/2019
-    Python version: 3.7
-
-    Set or Get bait. Calculate user how far away from bait.
-"""
+""" Set or Get bait. Calculate user how far away from bait."""
 
 import sqlite3 as sql
 import datetime
@@ -33,9 +25,9 @@ class Bait(DatabaseGreyd):
         self.bait_location = bait_location
 
     def new_bait_location(self):
-        """ Create new bait on map. """
+        """Create new bait on map."""
 
-        # TODO(canberk) Check random 100 999 is enough?
+        # TODO Check random 100 999 is enough?
         longitude, latitude = self.lobby_center_location.split(",")
         new_longitude = longitude[:-3] + str(random.randint(100, 999))
         new_latitude = latitude[:-3] + str(random.randint(100, 999))
@@ -43,15 +35,16 @@ class Bait(DatabaseGreyd):
 
         with sql.connect(self.db_path) as database:
             cursor = database.cursor()
-            cursor.execute("""UPDATE lobbies SET current_bait_location=?
-                              WHERE lobby_id=?""",
+            cursor.execute("""UPDATE lobbies
+                           SET current_bait_location=?
+                           WHERE lobby_id=?""",
                            (new_bait_location, self.lobby_id))
             database.commit()
 
         return new_bait_location
 
     def is_bait_taken(self):
-        """ Calculate distance from user and bait. """
+        """Calculate distance from user and bait."""
 
         circle = great_circle(self.user_location, self.bait_location).km
         return bool(circle < 0.01)
