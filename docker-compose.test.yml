@@ -7,21 +7,25 @@ services:
       - "8001:8001"
     env_file:
       - .env
+    volumes:
+      - keys-vol:/usr/src/app/rsa_keys
     networks:
       test_app_net:
         ipv4_address: 10.20.30.10
 
   test:
     build: test
-    env_file:
-      - .env
     links:
       - app
     volumes:
       - ./greyd/greydcrypt:/usr/src/app/greydcrypt
+      - keys-vol:/usr/src/app/rsa_keys
     networks:
       test_app_net:
         ipv4_address: 10.20.30.11
+
+volumes:
+  keys-vol: {}
 
 networks:
   test_app_net:
