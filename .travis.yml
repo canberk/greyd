@@ -1,0 +1,22 @@
+sudo: required
+services:
+    - docker
+  
+env:
+  global:
+    - DOCKER_COMPOSE_VERSION=1.23.2
+    - HOST=0.0.0.0
+    - PORT=8001
+    - GEONAMES_USERNAME=$GEONAMES_USERNAME
+
+before_install:
+  - sudo rm /usr/local/bin/docker-compose
+  - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
+  - chmod +x docker-compose
+  - sudo mv docker-compose /usr/local/bin
+
+before_script:
+  - env > .env
+
+script: 
+  -  docker-compose -f docker-compose.test.yml -p ci up --build --abort-on-container-exit

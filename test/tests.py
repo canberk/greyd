@@ -21,9 +21,9 @@ SCHEMAS = [
     "102_refresh_lobby",
     "204_start_game",
     "101_refresh_user_in_game",
-    "205_quit_lobby",
-    "302_get_statistics",
-    "301_get_score_info"
+    "205_quit_lobby"
+    # "302_get_statistics",
+    # "301_get_score_info"
 ]
 
 

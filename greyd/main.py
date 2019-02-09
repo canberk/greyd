@@ -6,7 +6,6 @@
     Incoming Greyd request controller.
 """
 
-import os
 import socket
 import threading
 import json
@@ -18,7 +17,13 @@ from active_user import ActiveUser
 from user_login import UserLogin
 from lobby import LobbyTransaction
 
-LOGGER = logging.getLogger(__name__)
+
+def setup_logging(path='logging.json'):
+    """Setup logging configuration"""
+
+    with open(path, 'rt') as file:
+        log_config = json.load(file)
+    logging.config.dictConfig(log_config)
 
 
 def main_loop():
@@ -104,24 +109,8 @@ def main_controller(connection, data, r_ip_address):
     connection.send(response)
 
 
-def setup_logging(default_path='logging.json',
-                  default_level=logging.INFO,
-                  env_key='LOG_CFG'):
-    """Setup logging configuration"""
-
-    path = default_path
-    value = os.getenv(env_key, None)
-    if value:
-        path = value
-    if os.path.exists(path):
-        with open(path, 'rt') as file:
-            log_config = json.load(file)
-        logging.config.dictConfig(log_config)
-    else:
-        logging.basicConfig(level=default_level)
-
-
 if __name__ == "__main__":
+    LOGGER = logging.getLogger(__name__)
     setup_logging()
     main_loop()
 else:
