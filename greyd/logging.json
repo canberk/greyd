@@ -6,7 +6,6 @@
             "format": "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
         }
     },
-
     "handlers": {
         "console": {
             "class": "logging.StreamHandler",
@@ -14,7 +13,6 @@
             "formatter": "simple",
             "stream": "ext://sys.stdout"
         },
-
         "info_file_handler": {
             "class": "logging.handlers.RotatingFileHandler",
             "level": "INFO",
@@ -24,7 +22,6 @@
             "backupCount": 20,
             "encoding": "utf8"
         },
-
         "warn_file_handler": {
             "class": "logging.handlers.RotatingFileHandler",
             "level": "WARN",
@@ -34,7 +31,6 @@
             "backupCount": 20,
             "encoding": "utf8"
         },
-
         "error_file_handler": {
             "class": "logging.handlers.RotatingFileHandler",
             "level": "ERROR",
@@ -44,7 +40,6 @@
             "backupCount": 20,
             "encoding": "utf8"
         },
-
         "critical_file_handler": {
             "class": "logging.handlers.RotatingFileHandler",
             "level": "CRITICAL",
@@ -55,9 +50,14 @@
             "encoding": "utf8"
         }
     },
-
     "root": {
         "level": "INFO",
-        "handlers": ["console", "info_file_handler", "warn_file_handler", "error_file_handler", "critical_file_handler"]
+        "handlers": [
+            "console",
+            "info_file_handler",
+            "warn_file_handler",
+            "error_file_handler",
+            "critical_file_handler"
+        ]
     }
 }

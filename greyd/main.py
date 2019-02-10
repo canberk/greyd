@@ -21,6 +21,11 @@ from lobby import LobbyTransaction
 def setup_logging(path='logging.json'):
     """Setup logging configuration"""
 
+    import os
+    directory = "logfiles"
+    if not os.path.exists(directory):
+        os.makedirs(directory)
+
     with open(path, 'rt') as file:
         log_config = json.load(file)
     logging.config.dictConfig(log_config)
