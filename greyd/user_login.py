@@ -46,18 +46,10 @@ class UserLogin(DatabaseGreyd):
             # Is this user registered before on database?
             if not user:
                 cursor.execute("""INSERT INTO user
-                               (facebook_id, 
-                               full_name, 
-                               e_mail,
-                               location, 
-                               location_city) 
-                               VALUES (?,?,?,?,?)
-                               """,
-                               (facebook_id,
-                                full_name,
-                                e_mail,
-                                location,
-                                city))
+                               (facebook_id, full_name, e_mail, location, 
+                               location_city) VALUES (?,?,?,?,?)""",
+                               (facebook_id, full_name, e_mail, location,
+                                city,))
                 database.commit()
 
                 self.logger.info("Create new Facebook user facebookId:%s",

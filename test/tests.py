@@ -21,9 +21,9 @@ SCHEMAS = [
     "102_refresh_lobby",
     "204_start_game",
     "101_refresh_user_in_game",
-    "205_quit_lobby"
+    "205_quit_lobby",
+    "301_get_score_info"
     # "302_get_statistics",
-    # "301_get_score_info"
 ]
 
 
@@ -34,7 +34,7 @@ def send_socket_request(request):
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.connect((config.HOST, config.PORT))
     s.send(crypted)
-    response = s.recv(1024)
+    response = s.recv(4096)
     s.close()
     response = crypt.decrypt(response, config.CLIENT_PRIVATE_RSA_KEY)
     json_data = json.loads(response)

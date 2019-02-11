@@ -1,5 +1,10 @@
 {
-    "success" : true,
-    "greydRule" : 301,
-    "greydId" : 1
+    "success": true,
+    "greydRule": 301,
+    "greydId": 1,
+    "friendsFacebookId": [
+        123457,
+        123458,
+        123459
+    ]
 }

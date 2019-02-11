@@ -43,7 +43,7 @@ def main_loop():
         s.listen(5)
         connection, address = s.accept()
         LOGGER.info("One incoming connection: %s", address[0])
-        data = connection.recv(1024).decode()
+        data = connection.recv(4096).decode()
         if data == "CloseServer" and address[0] == config.HOST:
             s.close()
             LOGGER.info("Server closed normally.")
@@ -59,8 +59,8 @@ def main_controller(connection, data, r_ip_address):
     try:
         request = crypt.decrypt(data, config.SERVER_PRIVATE_RSA_KEY)
     except TypeError:
-        # TODO Write decryption error handling.
-        # TODO Crypt base64 Incorrect padding handling.
+        # TODO Write decryption error handler.
+        # TODO Crypt base64 Incorrect padding handler.
         response = 'password decryption error.'
         LOGGER.warning("Password decryption error. %s", r_ip_address)
 
@@ -109,7 +109,7 @@ def main_controller(connection, data, r_ip_address):
         LOGGER.warning("Unsuccessful request: " +
                        request + "Address:" + r_ip_address)
 
-    print("Response: " + response)
+    LOGGER.info("Response: %s", response)
     response = crypt.encrypt(response, config.CLIENT_PUBLIC_RSA_KEY)
     connection.send(response)
 
