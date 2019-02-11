@@ -7,6 +7,7 @@
 
 import sqlite3 as sql
 import logging
+from datetime import datetime
 from geopy.distance import distance
 from database import DatabaseGreyd
 
@@ -44,7 +45,18 @@ class UserStatistics(DatabaseGreyd):
 
     def __get_statistics__(self, json_request):
         """Return statistics information."""
-        pass
+
+        greyd_id = json_request["greydId"]
+
+        response = {"success": True,
+                    "greydRule": 302,
+                    "greydId": greyd_id,
+                    "totalScore": self.__get_total_score__(greyd_id),
+                    "totalWalkDistance": self.__find_distance__(greyd_id),
+                    "collectedBait": self.__get_collected_bait__(greyd_id)}
+        response.update(self.__past_game_infos__(greyd_id))
+
+        return response
 
     def __get_top_players__(self, city_greyd_id=0, number_of_players=10):
         """Get information of the top n players (default=10).
@@ -136,3 +148,63 @@ class UserStatistics(DatabaseGreyd):
                     user_distance += distance(location1[1], location2[1]).m
 
         return user_distance
+
+    def __get_total_score__(self, greyd_id):
+        """Get total user score."""
+        with sql.connect(self.db_path) as database:
+            cursor = database.cursor()
+
+            score = cursor.execute("""SELECT total_score FROM user
+                                   WHERE greyd_id=?""", (greyd_id,)).fetchone()
+
+            return score[0]
+
+    def __past_game_infos__(self, greyd_id):
+        """Total game time, total game, collected bait and won game.
+        Return dict."""
+
+        with sql.connect(self.db_path) as database:
+            cursor = database.cursor()
+
+            games = cursor.execute("""SELECT user_lobby_entry_time,
+                                   user_lobby_exit_time,
+                                   is_game_won 
+                                   FROM user_to_lobby 
+                                   WHERE greyd_id=?""", (greyd_id,)).fetchall()
+
+        time_format = "%m/%d/%Y %H:%M"
+        total_time = 0
+        total_game = 0
+        won_game = 0
+        for game in games:
+            total_game += 1
+
+            if game[2] == 1:
+                won_game += 1
+
+            entry_time = datetime.strptime(game[0], time_format)
+            exit_time = datetime.strptime(game[1], time_format)
+
+            if entry_time < exit_time:
+                time_diff = exit_time - entry_time
+                time_diff = int(time_diff.total_seconds())
+                total_time += time_diff
+
+        infos = {"totalGame": total_game,
+                 "totalGameTime": total_time,
+                 "wonGame": won_game}
+        return infos
+
+    def __get_collected_bait__(self, greyd_id):
+        """Return collected bait number."""
+        with sql.connect(self.db_path) as database:
+            cursor = database.cursor()
+            bait_number = cursor.execute("""SELECT COUNT(*)
+                                         FROM user_location 
+                                         WHERE is_bait_taken=1 AND 
+                                         session_id in (SELECT session_id
+                                                        FROM user_to_lobby
+                                                        WHERE greyd_id=?)""",
+                                         (greyd_id,)).fetchone()
+
+        return bait_number[0]
