@@ -36,18 +36,18 @@ def generate_rsa_keypair(keys_path):
         file.write(key_data)
 
 
-SERVER_NAME = "server"
-CLIENT_NAME = "client"
+HOST = os.environ.get("HOST", "0.0.0.0")
+PORT = int(os.environ.get("PORT", "8001"))
 
-HOST = os.environ["HOST"]
-PORT = int(os.environ["PORT"])
+GEONAMES_USERNAME = os.environ.get("GEONAMES_USERNAME")
 
-DB_NAME = "greyd.db"
-DB_PATH = "/db"
+SERVER_NAME = os.environ.get("SERVER_NAME", "server")
+CLIENT_NAME = os.environ.get("CLIENT_NAME", "client")
 
-GEONAMES_USERNAME = os.environ["GEONAMES_USERNAME"]
+DB_NAME = os.environ.get("DB_NAME", "greyd.db")
+DB_PATH = os.environ.get("DB_PATH", "/db")
 
-KEYS_PATH = "/usr/src/app/rsa_keys/"
+KEYS_PATH = os.environ.get("KEYS_PATH", "/usr/src/app/rsa_keys/")
 
 use_rsa_key(KEYS_PATH + SERVER_NAME)
 use_rsa_key(KEYS_PATH + CLIENT_NAME)
