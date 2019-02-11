@@ -11,4 +11,5 @@ RUN pip install -r requirements.txt
 
 COPY . .
 
+# -r means "short test summery info" and -a is "all except pass"
 CMD [ "pytest", "-ra", "./tests.py" ]
