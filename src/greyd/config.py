@@ -45,9 +45,9 @@ SERVER_NAME = os.environ.get("SERVER_NAME", "server")
 CLIENT_NAME = os.environ.get("CLIENT_NAME", "client")
 
 DB_NAME = os.environ.get("DB_NAME", "greyd.db")
-DB_PATH = os.environ.get("DB_PATH", "/db")
+DB_PATH = os.environ.get("DB_PATH", "/usr/src/app/greyd/db")
 
-KEYS_PATH = os.environ.get("KEYS_PATH", "/usr/src/app/rsa_keys/")
+KEYS_PATH = os.environ.get("KEYS_PATH", "/usr/src/app/greyd/rsa_keys/")
 
 use_rsa_key(KEYS_PATH + SERVER_NAME)
 use_rsa_key(KEYS_PATH + CLIENT_NAME)

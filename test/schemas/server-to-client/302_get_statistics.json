@@ -11,7 +11,6 @@
     "totalScore",
     "totalWalkDistance",
     "totalGameTime",
-    "collectedBait",
     "totalGame",
     "wonGame"
   ],

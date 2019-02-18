@@ -2,19 +2,21 @@
 # -*- coding: utf-8 -*-
 
 """Test Main"""
+# pylint: disable=no-name-in-module
 
 import json
 import socket
 import glob
 import pytest
 import config
-from greydcrypt import crypt
 from assertions import assert_valid_schema
+
+from greyd.greyd_crypt import crypt
+
 
 SCHEMAS = [
     "401_facebook_login",
     "401_facebook_login_2",
-    "402_guest_login",
     "201_create_lobby",
     "202_find_lobbies",
     "203_join_lobby",

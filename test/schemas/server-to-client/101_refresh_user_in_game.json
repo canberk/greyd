@@ -11,8 +11,6 @@
     "lobbyStatus",
     "currentBaitLocation",
     "greydId",
-    "totalBait",
-    "totalScore",
     "users"
   ],
   "properties": {

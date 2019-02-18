@@ -2,13 +2,13 @@ version: '3'
 
 services:
   app:
-    build: greyd
+    build: src
     ports:
       - "8001:8001"
     env_file:
       - .env
     volumes:
-      - keys-vol:/usr/src/app/rsa_keys
+      - keys-vol:/usr/src/app/greyd/rsa_keys
     networks:
       test_app_net:
         ipv4_address: 10.20.30.10
@@ -18,7 +18,7 @@ services:
     links:
       - app
     volumes:
-      - ./greyd/greydcrypt:/usr/src/app/greydcrypt
+      - ./src/greyd:/usr/src/app/greyd
       - keys-vol:/usr/src/app/rsa_keys
     networks:
       test_app_net:

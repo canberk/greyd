@@ -26,12 +26,10 @@ class AESCipher(object):
         iv = Random.new().read(AES.block_size)
         cipher = AES.new(self.key, AES.MODE_CBC, iv)
         raw = self._character_control(raw)
-        # return base64.b64encode(iv + cipher.encrypt(raw))
         return iv + cipher.encrypt(raw)
 
     def decrypt(self, enc):
         """AES cipher to clear text method."""
-        # enc = base64.b64decode(enc)
         iv = enc[:AES.block_size]
         cipher = AES.new(self.key, AES.MODE_CBC, iv)
         decoded = self._unpad(cipher.decrypt(enc[AES.block_size:])).decode(
@@ -48,7 +46,7 @@ class AESCipher(object):
             text = text.replace(j, i)
         return text
 
-    def _character_control(self, text):
+    def _character_control(self, text):  # noqa pylint: disable=no-self-use
         regular_text = ''
         for i in text:
             character = ord(i)

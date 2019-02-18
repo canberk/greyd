@@ -1,16 +1,20 @@
 # -*- coding: utf-8 -*-
 
-"""RSA encrypt decrypt."""
+"""This module can be rsa encrypt and decrypt.
+Rsa with big data doesn't work. Aes crypt to data and rsa crypt aes key.
+https://stuvel.eu/python-rsa-doc/usage.html#working-with-big-files
+"""
 
 import base64
 import random
 import string
 import rsa
-from greydcrypt.aes_crypt import AESCipher
+
+from greyd.greyd_crypt.aes_crypt import AESCipher
 
 
 def decrypt(encrypted_text, local_private_rsa_key):
-    """Decrypt the incoming request"""
+    """Decrypt Rsa with private key."""
 
     encrypted_text = base64.b64decode(encrypted_text)
     aes_key_in_rsa = encrypted_text[-64:]
@@ -24,8 +28,7 @@ def decrypt(encrypted_text, local_private_rsa_key):
 
 
 def encrypt(clear_text, global_public_rsa_key):
-    """Encrypt the response"""
-
+    """Encrypt Rsa with public key."""
     aes_key = ''.join(
         random.choice(string.ascii_uppercase + string.digits) for _ in
         range(16))
