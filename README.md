@@ -7,7 +7,7 @@ Greyd is a location based android game application. The main goal is to increase
 
 #### Requirements
 [Docker](https://www.docker.com/)  
-[Docker compose](https://docs.docker.com/compose/)
+[Docker compose](https://docs.docker.com/compose/)\
 <a href="https://www.geonames.org/login">GeoNames</a> Account for find city name to location. 
 
 #### Usage
