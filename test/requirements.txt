@@ -1,6 +1,5 @@
 rsa==3.4.2
-pycrypto==2.6.1
-requests==2.18.4
+pycryptodome==3.7.3
 geopy==1.14.0
 jsonschema==2.6.0
 pytest==4.1.1

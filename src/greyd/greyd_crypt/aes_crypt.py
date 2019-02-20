@@ -7,13 +7,13 @@ from Crypto import Random
 from Crypto.Cipher import AES
 
 
-class AESCipher(object):
+class AESCipher():
     """Main class for AES cipher."""
     # pylint: disable=invalid-name
 
     def __init__(self, key):
         self.bs = 16
-        self.key = hashlib.sha256(key.encode()).digest()
+        self.key = hashlib.sha256(key.encode("utf8")).digest()
         self.turkish_converter = {'İ': '%10', 'ı': '%11', 'Ö': '%12',
                                   'ö': '%13', 'Ü': '%14', 'ü': '%15',
                                   'Ç': '%16', 'ç': '%17', 'Ğ': '%18',
@@ -25,7 +25,7 @@ class AESCipher(object):
         raw = self._pad(raw)
         iv = Random.new().read(AES.block_size)
         cipher = AES.new(self.key, AES.MODE_CBC, iv)
-        raw = self._character_control(raw)
+        raw = self._character_control(raw).encode("utf8")
         return iv + cipher.encrypt(raw)
 
     def decrypt(self, enc):
