@@ -1,4 +1,4 @@
-rsa==4.1
+rsa==4.7
 pycryptodome==3.7.3
 geopy==1.14.0
 jsonschema==2.6.0
