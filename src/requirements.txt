@@ -1,4 +1,4 @@
-rsa==4.1
+rsa==4.7
 pycryptodome==3.7.3
 requests==2.21.0
 geopy==1.14.0
